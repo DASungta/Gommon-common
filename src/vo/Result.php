@@ -6,7 +6,7 @@
  * Time: 18:47
  */
 
-namespace vo;
+namespace common\vo;
 
 class Result
 {
@@ -115,7 +115,7 @@ class Result
             'message' => $message,
             'dev_message' => $dev_message,
             'data' => $data
-        ]);
+        ], JSON_UNESCAPED_UNICODE);
     }
 
 
