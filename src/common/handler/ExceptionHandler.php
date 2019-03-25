@@ -8,6 +8,7 @@ use Exception;
 use think\exception\Handle;
 
 /**
+ * 适用ThinkPHP-5.1.x
  * Created by PhpStorm.
  * User: dasungta
  * Date: 2019-03-25

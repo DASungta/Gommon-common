@@ -112,26 +112,34 @@ class Result
      * 异常方法
      * @param $key
      * @param $devMessage
+     * @param string $type json是普通JsonString, tp是指用thinkphp5中json Response返回
      * @return false|string
      */
-    public function exception($key, $devMessage)
+    public function exception($key, $devMessage, $type = 'tp')
     {
         return $this->toJson(
             $this->getCode($key),
             $this->getMessage($key),
             $devMessage,
-            isset($data) ? $data : null
+            isset($data) ? $data : null,
+            $type
         );
     }
 
-    private function toJson($code, $message, $dev_message, $data)
+    private function toJson($code, $message, $dev_message, $data, $type = 'json')
     {
-        return json_encode([
+        $response = [
             'code' => $code,
             'message' => $message,
             'dev_message' => $dev_message,
             'data' => $data
-        ], JSON_UNESCAPED_UNICODE);
+        ];
+        if ($type != 'tp') {
+            return json_encode($response, JSON_UNESCAPED_UNICODE);
+        } else {
+            return json($response);
+        }
+
     }
 
     public function getCodeByKey($key)
