@@ -12,7 +12,7 @@
   "minimum-stability": "beta",
   "require": {
     "ext-json": "*",
-    "topthink/framework": "v5.1.35"
+    "topthink/framework": "5.1.*"
   },
   "autoload": {
     "psr-4": {
