@@ -7,10 +7,6 @@ use common\vo\Result;
 use Exception;
 use think\exception\Handle;
 
-require_once '../vo/Result.php';
-require_once '../exception/CommonException.php';
-require_once '../../../vendor/topthink/framework/library/think/exception/Handle.php';
-
 /**
  * Created by PhpStorm.
  * User: dasungta
