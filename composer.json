@@ -1,17 +1,24 @@
 {
-    "name": "gommon/gommon-common",
-    "description": "This is a package with vo/exception/tools in Gommon-framework by Greeneri.cn",
-    "type": "library",
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "zhangyc",
-            "email": "z.y.c.7777@163.com"
-        }
-    ],
-    "minimum-stability": "beta",
-    "require": {
-        "ext-json": "*",
-        "topthink/framework": "v5.1.35"
+  "name": "gommon/gommon-common",
+  "description": "This is a package with vo/exception/tools in Gommon-framework by Greeneri.cn",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "zhangyc",
+      "email": "z.y.c.7777@163.com"
     }
+  ],
+  "minimum-stability": "beta",
+  "require": {
+    "ext-json": "*",
+    "topthink/framework": "v5.1.35"
+  },
+  "autoload": {
+    "psr-4": {
+      "common\\vo\\": "src/common/vo",
+      "common\\exception\\": "src/common/exception",
+      "common\\handler\\": "src/common/handler"
+    }
+  }
 }
