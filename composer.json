@@ -11,6 +11,7 @@
     ],
     "minimum-stability": "beta",
     "require": {
-        "ext-json": "*"
+        "ext-json": "*",
+        "topthink/framework": "v5.1.35"
     }
 }

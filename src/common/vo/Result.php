@@ -1,13 +1,13 @@
 <?php
+
+namespace common\vo;
+
 /**
  * Created by PhpStorm.
  * User: dasungta
  * Date: 2019-03-22
  * Time: 18:47
  */
-
-namespace common\vo;
-
 class Result
 {
 
@@ -69,8 +69,8 @@ class Result
     {
         return $this->toJson(
             $this->getCode('OK'),
-            'OK',
             $this->getMessage('OK'),
+            'OK',
             isset($data) ? $data : null
         );
     }
@@ -108,6 +108,22 @@ class Result
         );
     }
 
+    /**
+     * 异常方法
+     * @param $key
+     * @param $devMessage
+     * @return false|string
+     */
+    public function exception($key, $devMessage)
+    {
+        return $this->toJson(
+            $this->getCode($key),
+            $this->getMessage($key),
+            $devMessage,
+            isset($data) ? $data : null
+        );
+    }
+
     private function toJson($code, $message, $dev_message, $data)
     {
         return json_encode([
@@ -116,6 +132,11 @@ class Result
             'dev_message' => $dev_message,
             'data' => $data
         ], JSON_UNESCAPED_UNICODE);
+    }
+
+    public function getCodeByKey($key)
+    {
+        return $this->codeMsg[$key][0];
     }
 
 
