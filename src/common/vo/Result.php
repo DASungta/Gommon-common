@@ -10,7 +10,6 @@ namespace common\vo;
  */
 class Result
 {
-
     private $codeMsg = [
         'OK' => [0, 'OK'],
         'SYSTEM_ERR' => [30001, 'System Error'],
@@ -109,6 +108,39 @@ class Result
     }
 
     /**
+     * 成功
+     * @param $data
+     * @param string $message
+     * @return false|string
+     */
+    public function successObject($data, $message = 'OK')
+    {
+        return $this->toJsonObject(
+            $this->getCode('OK'),
+            $message,
+            $this->getMessage('OK'),
+            isset($data) ? $data : null
+        );
+    }
+
+    /**
+     * 失败
+     * @param $key
+     * @param $message
+     * @param $data
+     * @return false|string
+     */
+    public function errorObject($key, $message, $data)
+    {
+        return $this->toJsonObject(
+            $this->getCode($key),
+            $message,
+            $this->getMessage($key),
+            isset($data) ? $data : null
+        );
+    }
+
+    /**
      * 异常方法
      * @param $key
      * @param $devMessage
@@ -140,6 +172,12 @@ class Result
             return json($response);
         }
 
+    }
+
+    private function toJsonObject($code, $message, $dev_message, $data)
+    {
+        $resultVo = new ResultVo($code, $message, $dev_message, $data);
+        return $resultVo;
     }
 
     public function getCodeByKey($key)
