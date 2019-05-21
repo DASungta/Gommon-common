@@ -17,14 +17,14 @@ class ResultResponse extends Response
     {
         $result = new Result();
         $data = $result->success($data, $message);
-        self::create($data, 'json', 200, $header, $options);
+        return self::create($data, 'json', 200, $header, $options);
     }
 
     public static function error($key, $message, $data, $header = [], $options = [])
     {
         $result = new Result();
         $data = $result->error($key, $message, $data);
-        self::create($data, 'json', 200, $header, $options);
+        return self::create($data, 'json', 200, $header, $options);
     }
 
 
