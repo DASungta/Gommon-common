@@ -1,8 +1,7 @@
 <?php
 
-namespace common\response;
+namespace common\vo;
 
-use common\vo\Result;
 use think\Response;
 
 /**
