@@ -13,19 +13,40 @@ use think\Response;
  */
 class ResultResponse extends Response
 {
-    public static function success($data, $message = 'OK', $header = [], $options = [])
-    {
-        $result = new Result();
-        $data = $result->successObject($data, $message);
-        return self::create($data, 'json', 200, $header, $options);
-    }
 
-    public static function error($key, $message, $data, $header = [], $options = [])
-    {
-        $result = new Result();
-        $data = $result->errorObject($key, $message, $data);
-        return self::create($data, 'json', 200, $header, $options);
-    }
+    // 输出参数
+    protected $options = [
+        'json_encode_param' => JSON_UNESCAPED_UNICODE,
+    ];
 
+    protected $contentType = 'application/json';
+
+    /**
+     * 处理数据
+     * @access protected
+     * @param mixed $data 要处理的数据
+     * @return mixed
+     * @throws \Exception
+     */
+    protected function output($data)
+    {
+        try {
+            $result = new Result();
+            $data = $result->successObject($data, "OK");
+            // 返回JSON数据格式到客户端 包含状态信息
+            $data = json_encode($data, $this->options['json_encode_param']);
+
+            if (false === $data) {
+                throw new \InvalidArgumentException(json_last_error_msg());
+            }
+
+            return $data;
+        } catch (\Exception $e) {
+            if ($e->getPrevious()) {
+                throw $e->getPrevious();
+            }
+            throw $e;
+        }
+    }
 
 }
