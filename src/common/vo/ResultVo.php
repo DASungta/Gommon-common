@@ -6,10 +6,10 @@ namespace common\vo;
 
 class ResultVo
 {
-    private $code = 0;
-    private $message = 'OK';
-    private $dev_message = 'OK';
-    private $data = null;
+    public $code = 0;
+    public $message = 'OK';
+    public $dev_message = 'OK';
+    public $data = null;
 
     /**
      * ResultVo constructor.
